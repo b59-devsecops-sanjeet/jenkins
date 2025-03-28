@@ -7,12 +7,12 @@ if [ $(id -u) -ne 0 ]; then
 fi
 
 echo "Installing jenkins"
-wget -O /etc/yum.repos.d/jenkins.repo \
-    https://pkg.jenkins.io/redhat-stable/jenkins.repo
-yum upgrade
+cp .jenkins.repo /etc/yum.repos.d/jenkins.repo
+
+yum upgrade -y
 # Add required dependencies for the jenkins package
-yum install fontconfig java-17-openjdk
-yum install jenkins
+yum install fontconfig java-17-openjdk -y
+yum install jenkins -y
 systemctl daemon-reload
 systemctl enable jenkins
 echo "Installation completed"
